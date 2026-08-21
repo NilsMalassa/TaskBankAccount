@@ -193,6 +193,10 @@ AutoTest.Net/
 # Web workbench (sass)
 .sass-cache/
 
+# JetBrains Rider
+.idea/
+
+
 # Installshield output folder
 [Ee]xpress/
 
