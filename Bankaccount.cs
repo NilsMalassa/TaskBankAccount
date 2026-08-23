@@ -5,6 +5,7 @@ public enum AccountType
     Checking,
     Saving,
 }
+
 /// <summary>
 /// manages attributes and behavior of a Bankaccount
 /// </summary>
@@ -13,8 +14,8 @@ public class Bankaccount
     private readonly AccountType _type;
     private readonly int _accountNumber;
     private decimal _balance;
-    
-    
+
+
     /// <summary>
     /// constructs an object of that class and assigns a random 9-digit number to Account Number
     /// </summary>
@@ -67,7 +68,7 @@ public class Bankaccount
     {
         Console.WriteLine($"Account Type: {_type}\nAccount Number: {_accountNumber}\nBalance: {_balance}");
     }
-    
+
     /// <summary>
     /// validates if amount is positive and not greater than balance before
     /// decreasing own and increasing target balance
@@ -87,7 +88,7 @@ public class Bankaccount
             Console.WriteLine("The amount cannot be greater than the balance.");
             return;
         }
-        
+
         this._balance -= amount;
         targetAccount.Deposit(amount);
     }
