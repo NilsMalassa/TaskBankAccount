@@ -12,12 +12,12 @@ public class Bank
 
     #endregion
 
+
     #region constructor
-    
+
     /// <summary>
     /// initializes a new AccountHolder list when constructing
     /// </summary>
-    /// <param name="name"></param>
     public Bank(string name)
     {
         Name = name;
@@ -26,6 +26,7 @@ public class Bank
 
     #endregion
 
+    
     #region methods
 
     public void AddNewAccountHolder(AccountHolder accountHolder)

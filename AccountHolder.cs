@@ -1,11 +1,21 @@
 ﻿namespace TaskBankAccount
 {
+    /// <summary>
+    /// manages own Bank Accounts
+    /// </summary>
     public class AccountHolder
     {
+        #region attributes
+
         public string Name { get; }
         public string Surname { get; private set; }
         public int Age { get; }
-        readonly List<Bankaccount>_bankaccounts;
+        readonly List<Bankaccount> _bankaccounts;
+
+        #endregion
+
+
+        #region constructor
 
         private AccountHolder(string name, string surname, int age)
         {
@@ -28,6 +38,11 @@
             return new AccountHolder(name, surname, age);
         }
 
+        #endregion
+
+
+        #region methods
+
         public void ShowOwnBankAccounts()
         {
             foreach (var bankAccount in _bankaccounts)
@@ -43,9 +58,11 @@
                 Console.WriteLine("Account already exists.");
                 return;
             }
-            
+
             _bankaccounts.Add(newAccount);
             Console.WriteLine("New account added.");
         }
+
+        #endregion
     }
 }

@@ -11,15 +11,20 @@ public enum AccountType
 /// </summary>
 public class Bankaccount
 {
+    #region fields
+
     private readonly AccountType _type;
     private readonly int _accountNumber;
     private decimal _balance;
 
+    #endregion
+
+
+    #region constructors
 
     /// <summary>
-    /// constructs an object of that class and assigns a random 9-digit number to Account Number
+    /// assigns a random 9-digit number to Account Number when constructing
     /// </summary>
-    /// <param name="type"></param>
     public Bankaccount(AccountType type)
     {
         _type = type;
@@ -27,11 +32,13 @@ public class Bankaccount
         _accountNumber = random.Next(100000000, 999999999);
     }
 
+    #endregion
+
+    #region methods
 
     /// <summary>
     /// validates if the amount is positive and less or equal to balance before decreasing balance
     /// </summary>
-    /// <param name="amount"></param>
     public void Withdraw(decimal amount)
     {
         if (amount < 0)
@@ -52,7 +59,6 @@ public class Bankaccount
     /// <summary>
     /// validates if amount is positive before increasing balance
     /// </summary>
-    /// <param name="amount"></param>
     private void Deposit(decimal amount)
     {
         if (amount < 0)
@@ -73,8 +79,6 @@ public class Bankaccount
     /// validates if amount is positive and not greater than balance before
     /// decreasing own and increasing target balance
     /// </summary>
-    /// <param name="amount"></param>
-    /// <param name="targetAccount"></param>
     public void TransferMoney(decimal amount, Bankaccount targetAccount)
     {
         if (amount < 0)
@@ -92,4 +96,6 @@ public class Bankaccount
         this._balance -= amount;
         targetAccount.Deposit(amount);
     }
+
+    #endregion
 }
