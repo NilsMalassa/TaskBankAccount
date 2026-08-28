@@ -36,24 +36,41 @@ public class Bankaccount
 
     #region methods
 
+    private bool BalanceIsSufficent(decimal amount)
+    {
+        if (amount <= _balance)
+        {
+            return true;
+        }
+
+        return false;
+    }
+    
+    private bool AmountIsPositive(decimal amount)
+    {
+        if (amount <= 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     /// <summary>
     /// validates if the amount is positive and less or equal to balance before decreasing balance
     /// </summary>
     public void Withdraw(decimal amount)
     {
-        if (amount < 0)
+        if (AmountIsPositive(amount) && BalanceIsSufficent(amount))
         {
-            Console.WriteLine("The amount cannot be negative.");
+            this._balance -= amount;
+
+            Console.WriteLine($"{amount}$ has been withdrawn");
+            
             return;
         }
 
-        if (_balance < amount)
-        {
-            Console.WriteLine("The amount cannot be greater than the balance.");
-            return;
-        }
-
-        this._balance -= amount;
+        Console.WriteLine("Withdrawal failed, make sure you have enough money");
     }
 
     /// <summary>
@@ -61,13 +78,16 @@ public class Bankaccount
     /// </summary>
     private void Deposit(decimal amount)
     {
-        if (amount < 0)
+        if (AmountIsPositive(amount))
         {
-            Console.WriteLine("The amount cannot be negative");
+            this._balance += amount;
+            
+            Console.WriteLine($"{amount}$ has been deposited");
+            
             return;
         }
 
-        this._balance += amount;
+        Console.WriteLine($"{amount}$ can not be deposited, amount is too small.");
     }
 
     public void ShowAccountInfo()
@@ -81,19 +101,7 @@ public class Bankaccount
     /// </summary>
     public void TransferMoney(decimal amount, Bankaccount targetAccount)
     {
-        if (amount < 0)
-        {
-            Console.WriteLine("The amount cannot be negative.");
-            return;
-        }
-
-        if (_balance < amount)
-        {
-            Console.WriteLine("The amount cannot be greater than the balance.");
-            return;
-        }
-
-        this._balance -= amount;
+        Withdraw(amount);
         targetAccount.Deposit(amount);
     }
 
